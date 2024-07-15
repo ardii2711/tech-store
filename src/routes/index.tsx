@@ -4,7 +4,9 @@ import HomePage from "@/pages";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import ProfilePage from "@/pages/users/profile";
-import EditProfile from "@/pages/users/edit-profile";
+import EditProfilePage from "@/pages/users/edit-profile";
+import CartPage from "@/pages/cart/cart";
+import HistoryOrderPage from "@/pages/cart/history-order";
 import NotFound from "@/pages/not-found";
 
 export default function Router() {
@@ -32,6 +34,14 @@ export default function Router() {
     {
       path: "/profile/edit",
       element: <EditProfile />,
+    },
+    {
+      path: "/cart",
+      element: <CartPage />,
+    },
+    {
+      path: "/history-order",
+      element: <HistoryOrderPage />,
     },
     {
       path: "*",
