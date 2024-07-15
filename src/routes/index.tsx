@@ -5,6 +5,7 @@ import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import ProfilePage from "@/pages/users/profile";
 import EditProfile from "@/pages/users/edit-profile";
+import NotFound from "@/pages/not-found";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ export default function Router() {
     {
       path: "/profile/edit",
       element: <EditProfile />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
   return <RouterProvider router={router} />;
