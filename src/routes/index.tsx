@@ -7,7 +7,7 @@ import ProfilePage from "@/pages/users/profile";
 import EditProfilePage from "@/pages/users/edit-profile";
 import CartPage from "@/pages/cart/cart";
 import HistoryOrderPage from "@/pages/cart/history-order";
-import NotFound from "@/pages/not-found";
+import NotFoundPage from "@/pages/not-found";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -33,7 +33,7 @@ export default function Router() {
     },
     {
       path: "/profile/edit",
-      element: <EditProfile />,
+      element: <EditProfilePage />,
     },
     {
       path: "/cart",
@@ -45,7 +45,7 @@ export default function Router() {
     },
     {
       path: "*",
-      element: <NotFound />,
+      element: <NotFoundPage />,
     },
   ]);
   return <RouterProvider router={router} />;
