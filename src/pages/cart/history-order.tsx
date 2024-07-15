@@ -13,7 +13,7 @@ const HistoryOrder = () => {
 
   return (
     <Layout>
-      <div className="mt-8">
+      <div className="mx-auto max-w-7xl my-10">
         <h2 className="text-2xl font-bold mb-4">Order History</h2>
         <div className="grid gap-4">
           {orderHistory.map((order) => (

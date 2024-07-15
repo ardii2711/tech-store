@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
@@ -32,9 +32,14 @@ const Cart = () => {
   };
 
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleSeeAllHistory = () => {
-    navigate("/historyOrder");
+    navigate("/history-order");
+  };
+
+  const handleCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -75,8 +80,11 @@ const Cart = () => {
         </div>
 
         <div className="bg-background rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-4">Total Price</h2>
-          <div className="text-lg font-semibold">${totalPrice}</div>
+          <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
+          <div className="text-lg font-semibold">Total Price: ${totalPrice}</div>
+          <Button size="sm" onClick={handleCheckout} className="mt-4">
+            Proceed to Checkout ({totalItems} items)
+          </Button>
         </div>
 
         <div className="bg-background rounded-lg shadow p-6">
