@@ -11,6 +11,7 @@ import NotFoundPage from "@/pages/not-found";
 import DetailProductPage from "@/pages/products/detail-product";
 import AboutPage from "@/pages/about";
 import CheckoutPage from "@/pages/checkout/checkout";
+import ContactPage from "@/pages/contact";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -57,6 +58,10 @@ export default function Router() {
     {
       path: "/checkout",
       element: <CheckoutPage />,
+    },
+    {
+      path: "/contact",
+      element: <ContactPage />,
     },
     {
       path: "*",
