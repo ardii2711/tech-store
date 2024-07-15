@@ -8,6 +8,7 @@ import EditProfilePage from "@/pages/users/edit-profile";
 import CartPage from "@/pages/cart/cart";
 import HistoryOrderPage from "@/pages/cart/history-order";
 import NotFoundPage from "@/pages/not-found";
+import DetailProduct from "@/pages/products/detail-product";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -46,6 +47,10 @@ export default function Router() {
     {
       path: "*",
       element: <NotFoundPage />,
+    },
+    {
+      path: "/detail-product",
+      element: <DetailProduct />,
     },
   ]);
   return <RouterProvider router={router} />;
