@@ -10,6 +10,7 @@ import HistoryOrderPage from "@/pages/cart/history-order";
 import NotFoundPage from "@/pages/not-found";
 import DetailProductPage from "@/pages/products/detail-product";
 import AboutPage from "@/pages/about";
+import CheckoutPage from "@/pages/checkout/checkout";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -52,6 +53,10 @@ export default function Router() {
     {
       path: "/about",
       element: <AboutPage />,
+    },
+    {
+      path: "/checkout",
+      element: <CheckoutPage />,
     },
     {
       path: "*",
