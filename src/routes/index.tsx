@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "@/pages";
+import EditProfile from "@/pages/users/edit-profile";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -11,6 +12,10 @@ export default function Router() {
     {
       path: "/home",
       element: <HomePage />,
+    },
+    {
+      path: "/profile/edit",
+      element: <EditProfile />,
     },
   ]);
   return <RouterProvider router={router} />;
