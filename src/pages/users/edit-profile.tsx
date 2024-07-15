@@ -10,7 +10,7 @@ import Layout from "@/components/layout";
 function EditProfile() {
   return (
     <Layout>
-      <Card className="w-full max-w-[600px] m-auto p-6 sm:p-8">
+      <Card className="w-full max-w-[600px] m-auto p-6 sm:p-8 my-6 md:my-12">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Edit Profile</CardTitle>
           <CardDescription>Update your personal information.</CardDescription>
