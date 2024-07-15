@@ -14,6 +14,7 @@ import CheckoutPage from "@/pages/checkout/checkout";
 import ManageProductPage from "@/pages/products/manage-product";
 import AddProductPage from "@/pages/products/add-product";
 import EditProductPage from "@/pages/products/edit-product";
+import ContactPage from "@/pages/contact";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -72,6 +73,10 @@ export default function Router() {
     {
       path: "/edit-product",
       element: <EditProductPage />,
+    },
+    {
+      path: "/contact",
+      element: <ContactPage />,
     },
     {
       path: "*",
