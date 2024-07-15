@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "@/pages";
 import LoginPage from "@/pages/auth/login";
+import RegisterPage from "@/pages/auth/register";
+import ProfilePage from "@/pages/users/profile";
 import EditProfile from "@/pages/users/edit-profile";
 
 export default function Router() {
@@ -17,6 +19,14 @@ export default function Router() {
     {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/register",
+      element: <RegisterPage />,
+    },
+    {
+      path: "/profile",
+      element: <ProfilePage />,
     },
     {
       path: "/profile/edit",
