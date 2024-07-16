@@ -27,27 +27,27 @@ function Index() {
             <CarouselContent>
               <CarouselItem>
                 <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
-                  <img src="/src/assets/Banner-Slider-1.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                  <img src="Banner-Slider-1.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
                 <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
-                  <img src="/src/assets/Banner-Slider-2.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                  <img src="/Banner-Slider-2.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
                 <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
-                  <img src="/src/assets/Banner-Slider-3.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                  <img src="/Banner-Slider-3.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
                 <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
-                  <img src="/src/assets/Banner-Slider-4.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                  <img src="/Banner-Slider-4.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
                 <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
-                  <img src="/src/assets/Banner-Slider-5.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                  <img src="/Banner-Slider-5.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
             </CarouselContent>
