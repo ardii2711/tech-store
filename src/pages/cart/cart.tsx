@@ -86,31 +86,6 @@ const Cart = () => {
             Proceed to Checkout ({totalItems} items)
           </Button>
         </div>
-
-        <div className="bg-background rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-4">Order History</h2>
-          <div className="grid gap-4">
-            {orderHistory.slice(0, 3).map((order) => (
-              <div key={order.id} className="bg-muted rounded-lg p-4 flex items-center justify-between">
-                <div>
-                  <div className="text-base font-medium">
-                    Order #{order.id} - {order.date}
-                  </div>
-                  <div className="text-muted-foreground">Total: ${order.total}</div>
-                  <div className="text-muted-foreground">Status: {order.status}</div>
-                </div>
-                <div className="flex gap-2">
-                  <Button size="sm">Details</Button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4">
-            <Button size="sm" onClick={handleSeeAllHistory}>
-              See All Order History
-            </Button>
-          </div>
-        </div>
       </div>
     </Layout>
   );
