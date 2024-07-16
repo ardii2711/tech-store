@@ -16,7 +16,6 @@ import {
 
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
 
 function Index() {
@@ -27,27 +26,28 @@ function Index() {
           <Carousel className="w-full">
             <CarouselContent>
               <CarouselItem>
-                <div className="relative h-[500px] w-full overflow-hidden">
-                  <img src="" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 flex flex-col items-start justify-center gap-4 bg-gradient-to-r from-black/50 to-transparent px-8 md:px-12 lg:px-16">
-                    <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">Discover the Latest Tech Trends</h2>
-                    <p className="text-lg text-white md:text-xl lg:text-2xl">Explore our curated collection of cutting-edge products.</p>
-                    <Button size="lg" className="bg-primary text-primary-foreground">
-                      Shop Now
-                    </Button>
-                  </div>
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                  <img src="/src/assets/Banner-Slider-1.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="relative h-[500px] w-full overflow-hidden">
-                  <img src="" alt="Carousel Image 2" width={1920} height={1080} className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 flex flex-col items-start justify-center gap-4 bg-gradient-to-r from-black/50 to-transparent px-8 md:px-12 lg:px-16">
-                    <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">Upgrade Your Tech Experience</h2>
-                    <p className="text-lg text-white md:text-xl lg:text-2xl">Find the perfect products to elevate your digital life.</p>
-                    <Button size="lg" className="bg-primary text-primary-foreground">
-                      Explore Now
-                    </Button>
-                  </div>
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                  <img src="/src/assets/Banner-Slider-2.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                  <img src="/src/assets/Banner-Slider-3.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                  <img src="/src/assets/Banner-Slider-4.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
+                </div>
+              </CarouselItem>
+              <CarouselItem>
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                  <img src="/src/assets/Banner-Slider-5.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
             </CarouselContent>
