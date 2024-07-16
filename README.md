@@ -1,3 +1,3 @@
 # Tech Store
 
-## Deployment [Library App](https://tech-store-v1.vercel.app)
+## Deployment [Tech Store](https://tech-store-v1.vercel.app)
