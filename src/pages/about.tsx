@@ -15,7 +15,7 @@ function About() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="rounded-full bg-muted p-1">
-                  <img src="/src/assets/ardi.png" alt="Ardi S" width={120} height={120} className="rounded-full" />
+                  <img src="/ardi.png" alt="Ardi S" width={120} height={120} className="rounded-full" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Ardi S</h3>
@@ -24,7 +24,7 @@ function About() {
               </div>
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="rounded-full bg-muted p-1">
-                  <img src="/src/assets/henry.png" alt="Henry Rivardo" width={120} height={120} className="rounded-full" />
+                  <img src="/henry.png" alt="Henry Rivardo" width={120} height={120} className="rounded-full" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Henry Rivardo</h3>
@@ -33,7 +33,7 @@ function About() {
               </div>
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="rounded-full bg-muted p-1">
-                  <img src="/src/assets/hafiz.png" alt="Hafis Dermawan" width={120} height={120} className="rounded-full" />
+                  <img src="/hafiz.png" alt="Hafis Dermawan" width={120} height={120} className="rounded-full" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Hafiz Dermawan</h3>
@@ -42,7 +42,7 @@ function About() {
               </div>
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="rounded-full bg-muted p-1">
-                  <img src="/src/assets/akbar.png" alt="Muhammad Akbar Ali Syfa" width={120} height={120} className="rounded-full" />
+                  <img src="/akbar.png" alt="Muhammad Akbar Ali Syfa" width={120} height={120} className="rounded-full" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Muhammad Akbar Ali Syfa</h3>

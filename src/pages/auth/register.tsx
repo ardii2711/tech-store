@@ -11,7 +11,7 @@ function Register() {
       <div className="lg:grid lg:grid-cols-2 lg:min-h-screen w-full">
         <div className="hidden lg:flex items-center justify-center p-6 lg:p-10">
           <div className="max-w-[500px] space-y-4">
-            <img src="/src/assets/image-auth.jpg" width="500" height="400" alt="Computer image" className="rounded-lg" />
+            <img src="/image-auth.jpg" width="500" height="400" alt="Computer image" className="rounded-lg" />
             <div className="space-y-2 text-center lg:text-left">
               <h2 className="text-3xl font-bold">Find the best computer equipment at Tech Store</h2>
               <p className="text-muted-foreground">Shop our wide selection of laptops, desktops, and accessories to upgrade your setup.</p>
