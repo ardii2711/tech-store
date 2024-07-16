@@ -11,13 +11,7 @@ function Login() {
       <div className="grid lg:grid-cols-2 min-h-screen w-full">
         <div className="flex items-center justify-center p-6 lg:p-10">
           <div className="max-w-[500px] space-y-4">
-            <img
-              src=""
-              width="500"
-              height="400"
-              alt="Computer image"
-              className="rounded-lg"
-            />
+            <img src="/image-auth.jpg" width="500" height="400" alt="Computer image" className="rounded-lg" />
             <div className="space-y-2 text-center lg:text-left">
               <h2 className="text-3xl font-bold">Welcome Back to Tech Store</h2>
               <p className="text-muted-foreground">Log in to access your account and continue shopping our wide selection of tech products.</p>
