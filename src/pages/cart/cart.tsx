@@ -11,7 +11,7 @@ const Cart = () => {
     { id: 3, name: "Gaming Chair", price: 400, quantity: 1, image: "/path/to/chair-image.jpg" },
   ]);
 
-  const [orderHistory, setOrderHistory] = useState([
+  const [orderHistory] = useState([
     { id: 1, date: "2024-07-10", total: 1500, status: "Delivered" },
     { id: 2, date: "2024-07-05", total: 2200, status: "Pending" },
     { id: 3, date: "2024-06-30", total: 1800, status: "Delivered" },
