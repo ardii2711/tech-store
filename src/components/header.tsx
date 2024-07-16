@@ -29,11 +29,7 @@ function Header() {
         <div className="flex items-center gap-4">
           <div className="relative hidden md:flex">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search products..."
-              className="h-9 w-64 rounded-md bg-muted pl-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-            />
+            <Input type="search" placeholder="Search products..." className="h-9 w-64 rounded-md bg-muted pl-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary" />
           </div>
           <Link to={"/cart"} className="relative">
             <ShoppingCartIcon className="h-6 w-6" />
@@ -69,6 +65,12 @@ function Header() {
                 <Link to={"/register"} className="flex items-center gap-2">
                   <LogInIcon className="h-4 w-4" />
                   Register
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to={"/history-order"} className="flex items-center gap-2">
+                  <LogInIcon className="h-4 w-4" />
+                  History Order
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
