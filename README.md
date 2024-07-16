@@ -1,4 +1,3 @@
 # Tech Store
 
-## Deployment
-Link: [Library App](https://libraryapp-ardev.vercel.app)
+## Deployment [Library App](https://tech-store-v1.vercel.app)
