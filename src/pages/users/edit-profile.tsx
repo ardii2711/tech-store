@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -26,7 +25,7 @@ function EditProfile() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" value={""} onChange={(e) => ({})} />
+            <Input id="password" type="password" value={""} />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="phone">Phone Number</Label>
