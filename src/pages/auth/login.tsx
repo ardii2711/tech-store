@@ -38,8 +38,8 @@ function Login() {
 
   return (
     <Layout>
-      <div className="grid lg:grid-cols-2 min-h-screen w-full">
-        <div className="flex items-center justify-center p-6 lg:p-10">
+      <div className="lg:grid lg:grid-cols-2 lg:min-h-screen w-full">
+        <div className="hidden lg:flex items-center justify-center p-6 lg:p-10">
           <div className="max-w-[500px] space-y-4">
             <img src="/image-auth.jpg" width="500" height="400" alt="Computer image" className="rounded-lg" />
             <div className="space-y-2 text-center lg:text-left">
