@@ -26,27 +26,27 @@ function Index() {
           <Carousel className="w-full">
             <CarouselContent>
               <CarouselItem>
-                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] w-full overflow-hidden">
                   <img src="Banner-Slider-1.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] w-full overflow-hidden">
                   <img src="/Banner-Slider-2.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px]  w-full overflow-hidden">
                   <img src="/Banner-Slider-3.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] w-full overflow-hidden">
                   <img src="/Banner-Slider-4.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
               <CarouselItem>
-                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden">
+                <div className="relative h-[100px] sm:h-[200px] md:h-[300px] lg:h-[400px] w-full overflow-hidden">
                   <img src="/Banner-Slider-5.jpg" alt="Carousel Image 1" width={1920} height={1080} className="h-full w-full object-cover" />
                 </div>
               </CarouselItem>
@@ -59,94 +59,9 @@ function Index() {
             </CarouselNext>
           </Carousel>
         </section>
-        <section className="bg-muted py-12 md:py-16 lg:py-20">
-          <div className="container">
-            <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-              <div className="flex flex-col items-start gap-4">
-                <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">Flash Sale</h2>
-                <p className="text-muted-foreground md:text-lg lg:text-xl">Limited-time deals on our top-selling products.</p>
-              </div>
-              <div className="flex flex-col items-end gap-4">
-                <div className="flex items-center gap-2">
-                  <ClockIcon className="h-6 w-6 text-primary" />
-                  <span className="text-lg font-medium">Ends in:</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded-md bg-primary px-3 py-1 text-lg font-medium text-primary-foreground">12</span>
-                  <span className="text-lg font-medium">:</span>
-                  <span className="rounded-md bg-primary px-3 py-1 text-lg font-medium text-primary-foreground">34</span>
-                  <span className="text-lg font-medium">:</span>
-                  <span className="rounded-md bg-primary px-3 py-1 text-lg font-medium text-primary-foreground">56</span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              <Link to={"/"}>
-                <Card>
-                  <CardHeader>
-                    <img src="" alt="Product Image" width={300} height={300} className="h-48 w-full object-cover" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-col items-start gap-2">
-                      <h3 className="text-lg font-bold">Product Name</h3>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold">3000</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to={"/"}>
-                <Card>
-                  <CardHeader>
-                    <img src="" alt="Product Image" width={300} height={300} className="h-48 w-full object-cover" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-col items-start gap-2">
-                      <h3 className="text-lg font-bold">Product Name</h3>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold">3000</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to={"/"}>
-                <Card>
-                  <CardHeader>
-                    <img src="" alt="Product Image" width={300} height={300} className="h-48 w-full object-cover" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-col items-start gap-2">
-                      <h3 className="text-lg font-bold">Product Name</h3>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold">3000</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-              <Link to={"/"}>
-                <Card>
-                  <CardHeader>
-                    <img src="" alt="Product Image" width={300} height={300} className="h-48 w-full object-cover" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-col items-start gap-2">
-                      <h3 className="text-lg font-bold">Product Name</h3>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold">3000</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </div>
-        </section>
         <section className="container py-12 md:py-16 lg:py-20">
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <div className="flex flex-col items-start gap-4">
+            <div className="flex flex-col items-center text-center md:text-start md:items-start gap-4">
               <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">Explore by Category</h2>
               <p className="text-muted-foreground md:text-lg lg:text-xl">Browse our wide selection of products by category.</p>
             </div>
@@ -202,7 +117,7 @@ function Index() {
         <section className="bg-muted py-12 md:py-16 lg:py-20">
           <div className="container">
             <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-              <div className="flex flex-col items-start gap-4">
+              <div className="flex flex-col items-center text-center md:text-start md:items-start gap-4">
                 <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">Explore Your Products</h2>
                 <p className="text-muted-foreground md:text-lg lg:text-xl">Check out our most popular and top-selling items.</p>
               </div>
