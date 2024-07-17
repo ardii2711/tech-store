@@ -6,7 +6,7 @@ import RegisterPage from "@/pages/auth/register";
 import ProfilePage from "@/pages/users/profile";
 import EditProfilePage from "@/pages/users/edit-profile";
 import CartPage from "@/pages/cart";
-import HistoryOrderPage from "@/pages/cart/history-order";
+import HistoryOrderPage from "@/pages/order/history-order";
 import NotFoundPage from "@/pages/not-found";
 import DetailProductPage from "@/pages/products/detail-product";
 import AboutPage from "@/pages/about";
@@ -43,7 +43,7 @@ export default function Router() {
       element: <CartPage />,
     },
     {
-      path: "/history-order",
+      path: "/order/history",
       element: <HistoryOrderPage />,
     },
     {
