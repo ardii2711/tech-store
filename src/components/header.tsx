@@ -16,7 +16,7 @@ function Header() {
           <span className="text-lg font-semibold">Tech Store</span>
         </Link>
         <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-12">
-          <Link to={"/home"} className="text-sm font-medium hover:text-primary transition-colors">
+          <Link to={"/"} className="text-sm font-medium hover:text-primary transition-colors">
             Home
           </Link>
           <Link to={"/about"} className="text-sm font-medium hover:text-primary transition-colors">
