@@ -68,7 +68,7 @@ function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link to={"/history-order"} className="flex items-center gap-2">
+                <Link to={"/order/history"} className="flex items-center gap-2">
                   <LogInIcon className="h-4 w-4" />
                   History Order
                 </Link>

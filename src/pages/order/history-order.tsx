@@ -1,5 +1,5 @@
-import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
+import Layout from "@/components/layout";
 
 const HistoryOrder = () => {
   const orderHistory = [
@@ -8,12 +8,11 @@ const HistoryOrder = () => {
     { id: 3, date: "2024-06-30", total: 1800, status: "Delivered" },
     { id: 4, date: "2024-06-25", total: 2500, status: "Delivered" },
     { id: 5, date: "2024-06-20", total: 800, status: "Delivered" },
-    // Tambahkan lebih banyak data order history sesuai kebutuhan
   ];
 
   return (
     <Layout>
-      <div className="mx-auto max-w-7xl my-10">
+      <div className="mx-auto py-6 md:py-10 px-4 md:px-10">
         <h2 className="text-2xl font-bold mb-4">Order History</h2>
         <div className="grid gap-4">
           {orderHistory.map((order) => (
