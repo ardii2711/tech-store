@@ -5,7 +5,7 @@ import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import ProfilePage from "@/pages/users/profile";
 import EditProfilePage from "@/pages/users/edit-profile";
-import CartPage from "@/pages/cart/cart";
+import CartPage from "@/pages/cart";
 import HistoryOrderPage from "@/pages/cart/history-order";
 import NotFoundPage from "@/pages/not-found";
 import DetailProductPage from "@/pages/products/detail-product";
@@ -20,10 +20,6 @@ export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage />,
-    },
-    {
-      path: "/home",
       element: <HomePage />,
     },
     {
