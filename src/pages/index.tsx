@@ -103,8 +103,8 @@ function Index() {
             </div>
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {onClick
-                ? data.map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />)
-                : data.slice(0, 12).map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />)}
+                ? data.map((product) => <ProductCard key={product.ID} data={product} navigate={`/products/${product.ID}`} />)
+                : data.slice(0, 12).map((product) => <ProductCard key={product.ID} data={product} navigate={`/products/${product.ID}`} />)}
             </div>
           </div>
         </section>
