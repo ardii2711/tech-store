@@ -9,8 +9,10 @@ import { addProductToCart, getCartItems } from "@/utils/apis/carts";
 import { getDetailProduct } from "@/utils/apis/products";
 import { formatCurrency } from "@/utils/function";
 import { IProduct } from "@/utils/types/products";
+import { useToken } from "@/utils/contexts/token";
 
 function DetailProduct() {
+  const { user } = useToken();
   const [data, setData] = useState<IProduct>();
   const [isInCart, setIsInCart] = useState(false);
   const params = useParams();
@@ -38,7 +40,7 @@ function DetailProduct() {
         setIsInCart(true);
       }
     } catch (error) {
-      toast.error((error as Error).message);
+      error as Error;
     }
   }
 
@@ -51,6 +53,8 @@ function DetailProduct() {
       toast.error((error as Error).message);
     }
   }
+
+  const isOwnProduct = data?.user_id === user?.id;
 
   return (
     <Layout>
@@ -84,9 +88,11 @@ function DetailProduct() {
               </div>
               <div className="flex flex-col gap-6">
                 <div className="text-4xl font-bold">{formatCurrency(data?.price ?? 0)}</div>
-                <Button size="lg" className="w-full" onClick={handleAddToCart} disabled={isInCart}>
-                  {isInCart ? "Already in Cart" : "Add to Cart"}
-                </Button>
+                {!isOwnProduct && (
+                  <Button size="lg" className="w-full" onClick={handleAddToCart} disabled={isInCart}>
+                    {isInCart ? "Already in Cart" : "Add to Cart"}
+                  </Button>
+                )}
               </div>
             </div>
           </div>
