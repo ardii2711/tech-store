@@ -8,7 +8,7 @@ export const setAxiosConfig = (token: string) => {
 };
 
 axiosWithConfig.interceptors.request.use((axiosConfig) => {
-  axiosConfig.baseURL = "http://13.213.64.4";
+  axiosConfig.baseURL = "https://two.ybtech.online";
   if (bearerToken !== "") {
     axiosConfig.headers.Authorization = `Bearer ${bearerToken}`;
   }
