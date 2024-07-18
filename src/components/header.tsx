@@ -1,17 +1,37 @@
 import { ClipboardListIcon, CpuIcon, LogInIcon, LogOutIcon, PackageIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
 
+import { getCartItems } from "@/utils/apis/carts";
 import { useToken } from "@/utils/contexts/token";
+import { ICart } from "@/utils/types/carts";
 
 function Header() {
   const { token, user, changeToken } = useToken();
+  const [cartItems, setCartItems] = useState<ICart[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      fetchCartItems();
+    }
+  }, [token]);
+
+  async function fetchCartItems() {
+    try {
+      const response = await getCartItems();
+      setCartItems(response.data || []);
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  }
 
   function handleLogout() {
     changeToken();
@@ -45,6 +65,9 @@ function Header() {
           {token ? (
             <Link to={"/cart"} className="relative">
               <ShoppingCartIcon className="h-6 w-6" />
+              {cartItems.length > 0 && (
+                <Badge className="absolute -top-2 -right-2 rounded-full bg-primary px-2 py-1 text-xs text-primary-foreground">{cartItems.length}</Badge>
+              )}
             </Link>
           ) : null}
           {token ? (
