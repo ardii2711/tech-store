@@ -8,7 +8,7 @@ export const setAxiosConfig = (token: string) => {
 };
 
 axiosWithConfig.interceptors.request.use((axiosConfig) => {
-  axiosConfig.baseURL = "https://virtserver.swaggerhub.com/HAFIZDARMAWAN1996/tokokomputerstore/1.0.0";
+  axiosConfig.baseURL = "http://13.213.64.4";
   if (bearerToken !== "") {
     axiosConfig.headers.Authorization = `Bearer ${bearerToken}`;
   }

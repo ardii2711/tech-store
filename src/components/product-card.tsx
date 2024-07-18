@@ -12,17 +12,21 @@ interface Props {
 function ProductCard(props: Props) {
   const { data, navigate } = props;
 
+  function formatRupiah(value: number): string {
+    return value.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }).replace('Rp', 'Rp.');
+  }
+
   return (
     <Link to={navigate}>
       <Card>
         <CardHeader>
-          <img src={data.image_url} alt={data.name} width={300} height={300} className="h-48 w-full object-cover" />
+          <img src={data.ImageUrl} alt={data.Name} width={300} height={300} className="h-48 w-full object-contain" />
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-start gap-2">
-            <h3 className="text-lg font-bold">{data.name}</h3>
+            <h3 className="text-lg font-bold truncate w-full">{data.Name}</h3>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold">Rp. {data.price}</span>
+              <span className="text-2xl font-bold">{formatRupiah(data.Price)}</span>
             </div>
           </div>
         </CardContent>
