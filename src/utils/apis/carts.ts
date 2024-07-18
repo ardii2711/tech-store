@@ -21,3 +21,13 @@ export const getCartItems = async () => {
     throw Error(message);
   }
 };
+
+export const deleteCartItem = async (item_id: number) => {
+  try {
+    const response = await axiosWithConfig.delete(`/cartitems/${item_id}`);
+    return response.data as IResponse<ICart>;
+  } catch (error: any) {
+    const { message } = error.response.data;
+    throw Error(message);
+  }
+};

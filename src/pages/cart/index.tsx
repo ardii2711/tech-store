@@ -6,8 +6,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
 
+import { deleteCartItem, getCartItems } from "@/utils/apis/carts";
 import { formatCurrency } from "@/utils/function";
-import { getCartItems } from "@/utils/apis/carts";
 import { ICart } from "@/utils/types/carts";
 
 function Index() {
@@ -25,11 +25,11 @@ function Index() {
   async function fetchData() {
     try {
       const response = await getCartItems();
-      const cartData = response.data.map((item) => ({
-        ...item,
-        qty: item.qty || 1,
-        id: item.product_id,
-      }));
+      const cartData = response.data || [];
+      cartData.forEach((item) => {
+        item.qty = item.qty || 1;
+        item.id = item.product_id;
+      });
       setCart(cartData);
     } catch (error) {
       toast.error((error as Error).message);
@@ -48,8 +48,14 @@ function Index() {
     );
   };
 
-  const handleRemoveItem = (id: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  const handleRemoveItem = async (id: number) => {
+    try {
+      await deleteCartItem(id);
+      setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+      toast.success("Item removed successfully");
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
   };
 
   const calculateTotalPrice = () => {
@@ -89,7 +95,7 @@ function Index() {
                     </Button>
                   </div>
                   <Button variant="destructive" onClick={() => handleRemoveItem(item.id)}>
-                    Delete
+                    Remove
                   </Button>
                 </div>
               </div>

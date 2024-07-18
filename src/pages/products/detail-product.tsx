@@ -32,7 +32,7 @@ function DetailProduct() {
   async function checkIfInCart() {
     try {
       const response = await getCartItems();
-      const cartItems = response.data;
+      const cartItems = response.data || [];
       const productInCart = cartItems.find((item) => item.product_id === +params.product_id!);
       if (productInCart) {
         setIsInCart(true);

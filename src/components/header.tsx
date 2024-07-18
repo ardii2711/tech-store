@@ -27,7 +27,7 @@ function Header() {
   async function fetchCartItems() {
     try {
       const response = await getCartItems();
-      setCartItems(response.data);
+      setCartItems(response.data || []);
     } catch (error) {
       toast.error((error as Error).message);
     }
