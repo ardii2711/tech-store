@@ -20,4 +20,4 @@ export const getDetailProduct = async (product_id: number) => {
     const { message } = error.response.data;
     throw Error(message);
   }
-}
+};

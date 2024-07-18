@@ -2,17 +2,22 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-import { getDetailProduct } from "@/utils/apis/products";
-import { IProduct } from "@/utils/types/products";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
 
+import { addProductToCart, getCartItems } from "@/utils/apis/carts";
+import { getDetailProduct } from "@/utils/apis/products";
+import { formatCurrency } from "@/utils/function";
+import { IProduct } from "@/utils/types/products";
+
 function DetailProduct() {
   const [data, setData] = useState<IProduct>();
+  const [isInCart, setIsInCart] = useState(false);
   const params = useParams();
 
   useEffect(() => {
     fetchData();
+    checkIfInCart();
   }, []);
 
   async function fetchData() {
@@ -24,8 +29,27 @@ function DetailProduct() {
     }
   }
 
-  function formatRupiah(value: number | undefined): string {
-    return (value || 0).toLocaleString("id-ID", { style: "currency", currency: "IDR" }).replace("Rp", "Rp.");
+  async function checkIfInCart() {
+    try {
+      const response = await getCartItems();
+      const cartItems = response.data;
+      const productInCart = cartItems.find((item) => item.product_id === +params.product_id!);
+      if (productInCart) {
+        setIsInCart(true);
+      }
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  }
+
+  async function handleAddToCart() {
+    try {
+      const response = await addProductToCart(+params.product_id!, 1);
+      toast.success(response.message);
+      setIsInCart(true);
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
   }
 
   return (
@@ -59,9 +83,9 @@ function DetailProduct() {
                 </p>
               </div>
               <div className="flex flex-col gap-6">
-                <div className="text-4xl font-bold">{formatRupiah(data?.price)}</div>
-                <Button size="lg" className="w-full">
-                  Add to Cart
+                <div className="text-4xl font-bold">{formatCurrency(data?.price ?? 0)}</div>
+                <Button size="lg" className="w-full" onClick={handleAddToCart} disabled={isInCart}>
+                  {isInCart ? "Already in Cart" : "Add to Cart"}
                 </Button>
               </div>
             </div>
