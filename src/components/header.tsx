@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
@@ -83,8 +84,9 @@ function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-2">
                   <DropdownMenuLabel>{user?.fullname}</DropdownMenuLabel>
+                  <ModeToggle />
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
@@ -125,8 +127,9 @@ function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-2">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <ModeToggle />
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
