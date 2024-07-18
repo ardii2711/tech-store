@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
+import { PlusIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Layout from "@/components/layout";
 import Dropdown from "./dropdown";
 
-import { PlusIcon } from "lucide-react";
-import { useToken } from "@/utils/contexts/token";
 import { getProductsByUser, deleteProduct } from "@/utils/apis/products";
-
-import { toast } from "sonner";
+import { useToken } from "@/utils/contexts/token";
 import { IProduct } from "@/utils/types/products";
 
 function ManageProduct() {
@@ -33,7 +33,7 @@ function ManageProduct() {
   const handleDelete = async (productId: number) => {
     try {
       await deleteProduct(productId);
-      setProducts(products.filter((product) => product.id !== productId));
+      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
       toast.success("Product deleted successfully");
     } catch (error) {
       toast.error("Failed to delete product");
