@@ -1,12 +1,82 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, FormProvider } from "react-hook-form"; // Perlu FormProvider dan useFormContext
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { CustomFormField } from "../../components/custom-formfield";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
+import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout";
 
+import { EditProfileSchema, editProfileSchema } from "../../utils/types/users";
+import { useToken } from "@/utils/contexts/token";
+import { updateProfile, deleteProfile } from "@/utils/apis/users";
+
 function EditProfile() {
+  const navigate = useNavigate();
+  const { user, changeToken } = useToken();
+
+  const methods = useForm<EditProfileSchema>({
+    resolver: zodResolver(editProfileSchema),
+    defaultValues: {
+      email: user?.email ?? "",
+      fullname: user?.fullname ?? "",
+      password: "",
+      phone: user?.phone ?? "",
+      address: user?.address ?? "",
+      image_profile: new File([], ""),
+    },
+  });
+
+  const { handleSubmit, setValue } = methods;
+
+  useEffect(() => {
+    setValue("email", user?.email ?? "");
+    setValue("fullname", user?.fullname ?? "");
+    setValue("phone", user?.phone ?? "");
+    setValue("address", user?.address ?? "");
+  }, [user, setValue]);
+
+  async function onSubmit(data: EditProfileSchema) {
+    try {
+      const response = await updateProfile(data);
+      toast.success(response.message);
+      navigate("/profile");
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to update profile. Please try again later.");
+      }
+    }
+  }
+
+  async function handleDelete() {
+    try {
+      const response = await deleteProfile();
+      toast.success(response.message);
+      changeToken();
+      navigate("/login");
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to delete account. Please try again later.");
+      }
+    }
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setValue("image_profile", files[0]);
+    }
+  };
+
   return (
     <Layout>
       <Card className="w-full max-w-[600px] m-auto p-6 sm:p-8 my-6 md:my-12">
@@ -15,45 +85,56 @@ function EditProfile() {
           <CardDescription>Update your personal information.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" value="" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input id="name" value="" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" value={""} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" type="tel" value="" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="address">Address</Label>
-            <Textarea id="address" rows={3} value="" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="profile-picture">Profile Picture</Label>
-            <div className="flex items-center gap-4">
-              <Avatar className="h-16 w-16">
-                <AvatarImage src={"/placeholder-user.jpg"} />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-              <Input id="profile-picture" type="file" />
-            </div>
-          </div>
+          <FormProvider {...methods}>
+            {/* Gunakan FormProvider di sekitar form */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <CustomFormField control={methods.control} name="email" label="Email">
+                {(field) => <Input {...field} data-testid="input-email" disabled={false} aria-disabled={false} />}
+              </CustomFormField>
+              <CustomFormField control={methods.control} name="fullname" label="Full Name">
+                {(field) => <Input {...field} data-testid="input-fullname" disabled={false} aria-disabled={false} />}
+              </CustomFormField>
+              <CustomFormField control={methods.control} name="password" label="Password">
+                {(field) => <Input {...field} type="password" data-testid="input-password" disabled={false} aria-disabled={false} />}
+              </CustomFormField>
+              <CustomFormField control={methods.control} name="phone" label="Phone Number">
+                {(field) => <Input {...field} data-testid="input-phone" disabled={false} aria-disabled={false} />}
+              </CustomFormField>
+              <CustomFormField control={methods.control} name="address" label="Address">
+                {(field) => <Input {...field} data-testid="input-address" placeholder="Lorem Ipsum Street" disabled={false} aria-disabled={false} />}
+              </CustomFormField>
+              <CustomFormField control={methods.control} name="image_profile" label="Profile Picture" description="Upload your profile picture">
+                {(field) => (
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-16 w-16">
+                      <AvatarImage src={user?.image_profile || "/placeholder-user.jpg"} />
+                      <AvatarFallback>{user?.fullname?.[0] ?? "?"}</AvatarFallback>
+                    </Avatar>
+                    <Input
+                      data-testid="input-profile-picture"
+                      type="file"
+                      disabled={false}
+                      aria-disabled={false}
+                      onChange={(e) => {
+                        field.onChange(e.target.files ? e.target.files[0] : null);
+                        handleFileChange(e);
+                      }}
+                    />
+                  </div>
+                )}
+              </CustomFormField>
+              <CardFooter className="flex justify-end gap-3">
+                <Button variant="destructive" onClick={handleDelete}>
+                  Delete Account
+                </Button>
+                <Button type="submit">Save Changes</Button>
+              </CardFooter>
+            </form>
+          </FormProvider>
         </CardContent>
-        <CardFooter className="flex justify-end gap-3">
-          <Button variant="destructive" onClick={() => ({})}>
-            Delete Account
-          </Button>
-          <Button onClick={() => ({})}>Save Changes</Button>
-        </CardFooter>
       </Card>
     </Layout>
   );
 }
+
 export default EditProfile;
