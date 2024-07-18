@@ -1,4 +1,4 @@
-import { FacebookIcon, InstagramIcon, LinkedinIcon, PackageIcon, TwitterIcon } from "lucide-react";
+import { CpuIcon, FacebookIcon, InstagramIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -8,7 +8,7 @@ function Footer() {
         <div className="grid grid-cols-1 gap-10 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div className="space-y-6">
             <div className="flex items-center">
-              <PackageIcon className="mr-2 h-6 w-6" />
+              <CpuIcon className="mr-2 h-6 w-6" />
               <h3 className="text-2xl font-bold">Tech Store</h3>
             </div>
             <p className="text-sm">Discover the latest tech products and accessories at our e-commerce store.</p>
@@ -45,7 +45,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to={"/"} className="hover:underline">
+                <Link to={"/contact"} className="hover:underline">
                   Contact Us
                 </Link>
               </li>
@@ -60,7 +60,7 @@ function Footer() {
             <h4 className="text-lg font-medium">Account</h4>
             <ul className="space-y-1">
               <li>
-                <Link to={"/"} className="hover:underline">
+                <Link to={"/profile"} className="hover:underline">
                   My Account
                 </Link>
               </li>
@@ -95,7 +95,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to={"/"} className="hover:underline">
+                <Link to={"/about"} className="hover:underline">
                   About Us
                 </Link>
               </li>
