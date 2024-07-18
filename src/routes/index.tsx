@@ -59,7 +59,7 @@ export default function Router() {
       element: <CheckoutPage />,
     },
     {
-      path: "/manage-product",
+      path: "/products/manage",
       element: <ManageProductPage />,
     },
     {
