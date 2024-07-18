@@ -1,15 +1,15 @@
-import axiosWithConfig from "./axios-with-config";
 import { AddProductSchema, IProduct } from "../types/products";
-import { IResponse } from "../types/api";
 import { checkProperty, valueFormatData } from "../function";
+import axiosWithConfig from "./axios-with-config";
+import { IResponse } from "../types/api";
 
 export const getProduct = async () => {
   try {
     const response = await axiosWithConfig.get("/products");
     return response.data as IResponse<IProduct[]>;
   } catch (error: any) {
-    const { message } = error.response.data;
-    throw Error(message);
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
   }
 };
 
@@ -18,8 +18,8 @@ export const getDetailProduct = async (product_id: number) => {
     const response = await axiosWithConfig.get(`/products/${product_id}`);
     return response.data as IResponse<IProduct>;
   } catch (error: any) {
-    const { message } = error.response.data;
-    throw Error(message);
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
   }
 };
 
@@ -35,7 +35,27 @@ export const addProduct = async (body: AddProductSchema) => {
     const response = await axiosWithConfig.post("/products", formData);
     return response.data as IResponse<IProduct>;
   } catch (error: any) {
-    const { message } = error.response.data;
-    throw Error(message);
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
+  }
+};
+
+export const getProductsByUser = async (userId: number) => {
+  try {
+    const response = await axiosWithConfig.get(`/users/${userId}/products`);
+    return response.data as IResponse<IProduct[]>;
+  } catch (error: any) {
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
+  }
+};
+
+export const deleteProduct = async (productId: number) => {
+  try {
+    const response = await axiosWithConfig.delete(`/products/${productId}`);
+    return response.data as IResponse<null>;
+  } catch (error: any) {
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
   }
 };
