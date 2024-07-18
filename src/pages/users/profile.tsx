@@ -2,8 +2,15 @@ import Layout from "@/components/layout";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useToken } from "@/utils/contexts/token";
 
 function Profile() {
+  const { user } = useToken();
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Layout>
       <div className="flex items-center justify-center min-h-screen">
@@ -12,23 +19,23 @@ function Profile() {
           <div className="grid gap-6">
             <div className="flex justify-center">
               <Avatar className="w-16 h-16">
-                <AvatarImage src="https://images.unsplash.com/photo-1599566150163-29194dcaad36" className="rounded-full w-full h-full object-cover" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage src={user.image_profile || "https://images.unsplash.com/photo-1599566150163-29194dcaad36"} className="rounded-full w-full h-full object-cover" />
+                <AvatarFallback>{user.fullname[0]}</AvatarFallback>
               </Avatar>
             </div>
             <div className="flex items-center gap-4">
               <div className="grid gap-1 mx-auto">
-                <div className="text-base font-medium ">John Doe</div>
-                <div className="text-muted-foreground text-sm">johndoe@example.com</div>
+                <div className="text-base font-medium ">{user.fullname}</div>
+                <div className="text-muted-foreground text-sm">{user.email}</div>
               </div>
             </div>
             <div className="grid gap-1">
               <label className="text-sm font-medium text-muted-foreground">Phone</label>
-              <div className="text-base font-medium">+1234567890</div>
+              <div className="text-base font-medium">{user.phone}</div>
             </div>
             <div className="grid gap-1">
               <label className="text-sm font-medium text-muted-foreground">Address</label>
-              <div className="text-base font-medium">123 Street, City, Country</div>
+              <div className="text-base font-medium">{user.address}</div>
             </div>
             <div className="flex gap-2 justify-center">
               <Button size="sm">
