@@ -11,3 +11,13 @@ export const getProduct = async () => {
     throw Error(message);
   }
 };
+
+export const getDetailProduct = async (product_id: number) => {
+  try {
+    const response = await axiosWithConfig.get(`/products/${product_id}`);
+    return response.data as IResponse<IProduct>;
+  } catch (error: any) {
+    const { message } = error.response.data;
+    throw Error(message);
+  }
+}

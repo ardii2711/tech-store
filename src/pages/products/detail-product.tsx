@@ -1,55 +1,70 @@
-import { StarIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getDetailProduct } from "@/utils/apis/products";
+import { IProduct } from "@/utils/types/products";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import Layout from "@/components/layout";
 
 function DetailProduct() {
+  const [data, setData] = useState<IProduct>();
+  const params = useParams();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    try {
+      const response = await getDetailProduct(+params.product_id!);
+      setData(response.data);
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  }
+
+  function formatRupiah(value: number | undefined): string {
+    return (value || 0).toLocaleString("id-ID", { style: "currency", currency: "IDR" }).replace("Rp", "Rp.");
+  }
+
   return (
     <Layout>
-      <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-5xl px-4 mx-auto py-6">
-        <div className="flex gap-3 items-start">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNRTgvq1AdyzSTpvT68lOP0xwQOCdPjT_C3g&s"
-            alt="Product Image"
-            width={400}
-            height={400}
-            className="aspect-square object-cover border w-full rounded-lg overflow-hidden"
-          />
-        </div>
-        <div className="grid gap-4 md:gap-10 items-start">
-          <div className="grid gap-2">
-            <h1 className="font-bold text-2xl sm:text-3xl">Acme Prism Wireless Headphones</h1>
-            <div className="flex items-center gap-0.5">
-              <StarIcon className="w-5 h-5 fill-primary" />
-              <StarIcon className="w-5 h-5 fill-primary" />
-              <StarIcon className="w-5 h-5 fill-primary" />
-              <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-              <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
+      <div className="bg-background text-foreground">
+        <div className="container mx-auto px-4 md:px-12 py-12 md:py-16 lg:py-20">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+            <div className="flex items-center justify-center">
+              <img
+                src={data?.image_url}
+                alt="Product Image"
+                width={400}
+                height={400}
+                className="w-full max-h-[300px] md:max-h-[400px] lg:max-h-[500px] object-cover rounded-lg"
+              />
             </div>
-            <div className="text-4xl font-bold">$149.99</div>
-          </div>
-          <div className="grid gap-4">
-            <p>Experience the ultimate in wireless audio with the Acme Prism Headphones. Crafted with premium materials and advanced technology, these headphones deliver exceptional sound quality, comfort, and convenience.</p>
-            <div className="grid gap-2">
-              <Label htmlFor="quantity" className="text-base">
-                Quantity
-              </Label>
-              <Select defaultValue="1">
-                <SelectTrigger className="w-24">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">1</SelectItem>
-                  <SelectItem value="2">2</SelectItem>
-                  <SelectItem value="3">3</SelectItem>
-                  <SelectItem value="4">4</SelectItem>
-                  <SelectItem value="5">5</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid gap-6 md:gap-8 lg:gap-10">
+              <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{data?.name}</h1>
+                <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                  <span>Category: {data?.category}</span>
+                  <span className="hidden md:inline">•</span>
+                  <span>Stock: {data?.stock}</span>
+                </div>
+              </div>
+              <div className="text-sm md:text-base leading-relaxed">
+                <p>{data?.description}</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod vero dicta, ut dolores aspernatur voluptatibus tempora a, ipsa asperiores quasi
+                  quaerat quae provident esse veniam optio dolorum corrupti ratione corporis!
+                </p>
+              </div>
+              <div className="flex flex-col gap-6">
+                <div className="text-4xl font-bold">{formatRupiah(data?.price)}</div>
+                <Button size="lg" className="w-full">
+                  Add to Cart
+                </Button>
+              </div>
             </div>
-            <Button size="lg">Add to Cart</Button>
           </div>
         </div>
       </div>
