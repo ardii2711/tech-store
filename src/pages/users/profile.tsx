@@ -42,7 +42,7 @@ function Profile() {
                 <Link to={"/profile/edit"}>Edit Profile</Link>
               </Button>
               <Button size="sm">
-                <Link to={"/manage-product"}>Manage your Products</Link>
+                <Link to={"/products/manage"}>Manage your Products</Link>
               </Button>
             </div>
           </div>

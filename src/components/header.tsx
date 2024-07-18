@@ -40,11 +40,7 @@ function Header() {
         <div className="flex items-center gap-4">
           <div className="relative hidden md:flex">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search products..."
-              className="h-9 w-64 rounded-md bg-muted pl-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-            />
+            <Input type="search" placeholder="Search products..." className="h-9 w-64 rounded-md bg-muted pl-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary" />
           </div>
           {token ? (
             <Link to={"/cart"} className="relative">
@@ -75,7 +71,7 @@ function Header() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to={"/manage-product"} className="flex items-center gap-2">
+                  <Link to={"/products/manage"} className="flex items-center gap-2">
                     <PackageIcon className="h-4 w-4" />
                     Manage Product
                   </Link>
