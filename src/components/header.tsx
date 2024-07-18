@@ -46,9 +46,11 @@ function Header() {
               className="h-9 w-64 rounded-md bg-muted pl-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>
-          <Link to={"/cart"} className="relative">
-            <ShoppingCartIcon className="h-6 w-6" />
-          </Link>
+          {token ? (
+            <Link to={"/cart"} className="relative">
+              <ShoppingCartIcon className="h-6 w-6" />
+            </Link>
+          ) : null}
           {token ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -56,7 +58,7 @@ function Header() {
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={user?.image_profile} />
                     <AvatarFallback>
-                      <UserIcon className="h-6 w-6"/>
+                      <UserIcon className="h-6 w-6" />
                     </AvatarFallback>
                   </Avatar>
                 </Button>
@@ -85,10 +87,10 @@ function Header() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer" onClick={() => handleLogout()}>
-                    <LogOutIcon className="h-4 w-4" />
-                    Logout
-                  </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center gap-2 cursor-pointer" onClick={() => handleLogout()}>
+                  <LogOutIcon className="h-4 w-4" />
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
@@ -98,7 +100,7 @@ function Header() {
                   <Avatar className="h-8 w-8">
                     <AvatarImage src="/placeholder-user.jpg" />
                     <AvatarFallback>
-                      <UserIcon className="h-6 w-6"/>
+                      <UserIcon className="h-6 w-6" />
                     </AvatarFallback>
                   </Avatar>
                 </Button>
