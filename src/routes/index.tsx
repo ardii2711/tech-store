@@ -47,7 +47,7 @@ export default function Router() {
       element: <HistoryOrderPage />,
     },
     {
-      path: "/detail-product",
+      path: "/products/:product_id",
       element: <DetailProductPage />,
     },
     {
