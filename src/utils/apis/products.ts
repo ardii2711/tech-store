@@ -40,16 +40,6 @@ export const addProduct = async (body: AddProductSchema) => {
   }
 };
 
-export const getProductsByUser = async (userId: number) => {
-  try {
-    const response = await axiosWithConfig.get(`/users/${userId}/products`);
-    return response.data as IResponse<IProduct[]>;
-  } catch (error: any) {
-    const message = error.response?.data?.message || "An error occurred";
-    throw new Error(message);
-  }
-};
-
 export const deleteProduct = async (productId: number) => {
   try {
     const response = await axiosWithConfig.delete(`/products/${productId}`);
@@ -57,5 +47,28 @@ export const deleteProduct = async (productId: number) => {
   } catch (error: any) {
     const message = error.response?.data?.message || "An error occurred";
     throw new Error(message);
+  }
+};
+
+export const editProduct = async (formData: FormData, product_id: number) => {
+  try {
+    const response = await axiosWithConfig.put(`/products/${product_id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data as IResponse<IProduct>;
+  } catch (error: any) {
+    const message = error.response?.data?.message || "An error occurred";
+    throw new Error(message);
+  }
+};
+
+export const getProductsByUser = async () => {
+  try {
+    const response = await axiosWithConfig.get(`/products/productbyowner?isPersonal=true`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch products");
   }
 };

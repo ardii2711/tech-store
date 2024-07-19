@@ -67,7 +67,7 @@ export default function Router() {
       element: <AddProductPage />,
     },
     {
-      path: "/edit-product",
+      path: "/edit-product/:product_id",
       element: <EditProductPage />,
     },
     {
