@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -7,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CustomFormField } from "@/components/custom-formfield";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import CustomAlert from "@/components/custom-alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form } from "@/components/ui/form";
@@ -15,9 +17,8 @@ import Layout from "@/components/layout";
 import { checkOutSchema, CheckOutSchema } from "@/utils/types/checkout";
 import { addCheckOut } from "@/utils/apis/checkout";
 import { formatCurrency } from "@/utils/function";
-import { ICart } from "@/utils/types/carts";
 import { useToken } from "@/utils/contexts/token";
-import { useEffect } from "react";
+import { ICart } from "@/utils/types/carts";
 
 interface LocationState {
   state: {
@@ -27,10 +28,12 @@ interface LocationState {
 
 function Checkout() {
   const location = useLocation() as LocationState;
-  const cart = location.state?.cart || [];
   const { user } = useToken();
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  const cart = location.state?.cart || [];
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const form = useForm<CheckOutSchema>({
     resolver: zodResolver(checkOutSchema),
@@ -41,6 +44,7 @@ function Checkout() {
     },
   });
 
+
   useEffect(() => {
     form.setValue("fullname", user?.fullname ?? "");
     form.setValue("phone", user?.phone ?? "");
@@ -50,12 +54,20 @@ function Checkout() {
   async function handlePlaceOrder(data: CheckOutSchema) {
     try {
       const response = await addCheckOut(data.shipping_address);
-      console.log(response);
-      toast.success(response.message);
-      navigate("/");
+      setPaymentUrl(response.data.payment_url);
     } catch (error) {
       toast.error((error as Error).message);
     }
+  }
+
+  function handleProceedPayment() {
+    if (paymentUrl) {
+      window.location.href = paymentUrl;
+    }
+  }
+
+  function handleCancel() {
+    navigate("/");
   }
 
   return (
@@ -138,9 +150,16 @@ function Checkout() {
                         />
                       )}
                     </CustomFormField>
-                    <Button className="w-full" type="submit">
-                      Place Order
-                    </Button>
+                    <CustomAlert
+                      title="Place Order"
+                      description="Are you sure you want to place this order? If you proceed, you will be redirected to the payment page."
+                      onAction={handleProceedPayment}
+                      onCancel={handleCancel}
+                    >
+                      <Button className="w-full" type="submit">
+                        Place Order
+                      </Button>
+                    </CustomAlert>
                   </form>
                 </Form>
               </CardContent>
