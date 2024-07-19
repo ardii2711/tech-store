@@ -1,13 +1,13 @@
+import axiosWithConfig from "./axios-with-config";
 import { IResponse } from "../types/api";
 import { IOrder } from "../types/orders";
-import axiosWithConfig from "./axios-with-config";
 
-export const getOrder = async () => {
+export const getOrder = async (): Promise<IOrder[]> => {
   try {
-    const response = await axiosWithConfig.get("/orders");
-    return response.data as IResponse<IOrder[]>;
+    const response = await axiosWithConfig.get<IResponse<IOrder[]>>("/orders");
+    return response.data.data;
   } catch (error: any) {
     const { message } = error.response.data;
-    throw Error(message);
+    throw new Error(message);
   }
 };
