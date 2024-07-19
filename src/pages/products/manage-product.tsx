@@ -14,17 +14,25 @@ import { IProduct } from "@/utils/types/products";
 function ManageProduct() {
   const { user } = useToken();
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchProducts();
+    if (user) {
+      fetchProducts();
+    }
   }, [user]);
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const response = await getProductsByUser();
-      setProducts(response.data);
+      setProducts(response.data || []); // Ensure products is always an array
+      setLoading(false);
     } catch (error) {
+      setError("Failed to fetch products");
       toast.error("Failed to fetch products");
+      setLoading(false);
     }
   };
 
@@ -41,6 +49,26 @@ function ManageProduct() {
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(value);
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-full">
+          <div>Loading...</div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-full">
+          <div>{error}</div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -68,18 +96,28 @@ function ManageProduct() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {products.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell className="font-medium">{product.name}</TableCell>
-                    <TableCell>{product.description}</TableCell>
-                    <TableCell>{formatCurrency(product.price)}</TableCell>
-                    <TableCell>{product.stock}</TableCell>
-                    <TableCell className="flex items-center gap-2">
-                      <Link to={`/edit-product/${product.id}`} className="text-blue-600 hover:underline"></Link>
-                      <Dropdown productId={product.id} onDelete={() => handleDelete(product.id)} />
+                {products.length > 0 ? (
+                  products.map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell className="font-medium">{product.name}</TableCell>
+                      <TableCell>{product.description}</TableCell>
+                      <TableCell>{formatCurrency(product.price)}</TableCell>
+                      <TableCell>{product.stock}</TableCell>
+                      <TableCell className="flex items-center gap-2">
+                        <Link to={`/edit-product/${product.id}`} className="text-blue-600 hover:underline">
+                          Edit
+                        </Link>
+                        <Dropdown productId={product.id} onDelete={() => handleDelete(product.id)} />
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center">
+                      No products found
                     </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </div>
