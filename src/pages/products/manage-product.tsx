@@ -104,9 +104,7 @@ function ManageProduct() {
                       <TableCell>{formatCurrency(product.price)}</TableCell>
                       <TableCell>{product.stock}</TableCell>
                       <TableCell className="flex items-center gap-2">
-                        <Link to={`/edit-product/${product.id}`} className="text-blue-600 hover:underline">
-                          Edit
-                        </Link>
+                        <Link to={`/edit-product/${product.id}`} className="text-blue-600 hover:underline"></Link>
                         <Dropdown productId={product.id} onDelete={() => handleDelete(product.id)} />
                       </TableCell>
                     </TableRow>
