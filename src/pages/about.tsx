@@ -45,7 +45,7 @@ function About() {
                   <img src="/akbar.png" alt="Muhammad Akbar Ali Syfa" width={120} height={120} className="rounded-full" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">Muhammad Akbar Ali Syfa</h3>
+                  <h3 className="text-lg font-semibold">Muhammad Akbar Ali Syifa</h3>
                   <p className="text-muted-foreground">Backend</p>
                 </div>
               </div>
