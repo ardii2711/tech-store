@@ -22,7 +22,7 @@ function Index() {
   async function fetchData() {
     try {
       const response = await getProduct();
-      setData(response.data);
+      setData(response.data || []);
     } catch (error) {
       toast.error((error as Error).message);
     }
@@ -102,9 +102,10 @@ function Index() {
               </Link>
             </div>
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {onClick
-                ? data.map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />)
-                : data.slice(0, 8).map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />)}
+              {data.length > 0 &&
+                (onClick
+                  ? data.map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />)
+                  : data.slice(0, 8).map((product) => <ProductCard key={product.id} data={product} navigate={`/products/${product.id}`} />))}
             </div>
           </div>
         </section>

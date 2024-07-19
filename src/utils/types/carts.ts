@@ -1,11 +1,7 @@
-export interface IResponseCart {
-  id: number;
-  quantity: number;
-}
-
 export interface ICart {
   id: number;
-  user_id: number;
+  buyer_id: number;
+  product_owner_id: number;
   product_id: number;
   name: string;
   qty: number;

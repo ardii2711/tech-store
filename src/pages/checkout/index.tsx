@@ -16,6 +16,8 @@ import { checkOutSchema, CheckOutSchema } from "@/utils/types/checkout";
 import { addCheckOut } from "@/utils/apis/checkout";
 import { formatCurrency } from "@/utils/function";
 import { ICart } from "@/utils/types/carts";
+import { useToken } from "@/utils/contexts/token";
+import { useEffect } from "react";
 
 interface LocationState {
   state: {
@@ -23,9 +25,10 @@ interface LocationState {
   };
 }
 
-function Index() {
+function Checkout() {
   const location = useLocation() as LocationState;
   const cart = location.state?.cart || [];
+  const { user } = useToken();
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const navigate = useNavigate();
 
@@ -34,13 +37,20 @@ function Index() {
     defaultValues: {
       fullname: "",
       phone: "",
-      address: "",
+      shipping_address: "",
     },
   });
 
+  useEffect(() => {
+    form.setValue("fullname", user?.fullname ?? "");
+    form.setValue("phone", user?.phone ?? "");
+    form.setValue("shipping_address", user?.address ?? "");
+  }, [user]);
+
   async function handlePlaceOrder(data: CheckOutSchema) {
     try {
-      const response = await addCheckOut(data.address);
+      const response = await addCheckOut(data.shipping_address);
+      console.log(response);
       toast.success(response.message);
       navigate("/");
     } catch (error) {
@@ -118,7 +128,7 @@ function Index() {
                         )}
                       </CustomFormField>
                     </div>
-                    <CustomFormField control={form.control} name="address" label="Address">
+                    <CustomFormField control={form.control} name="shipping_address" label="Shipping Address">
                       {(field) => (
                         <Textarea
                           placeholder="123, Main Street, Lagos, Nigeria"
@@ -142,4 +152,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Checkout;

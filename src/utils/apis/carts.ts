@@ -1,11 +1,21 @@
 import axiosWithConfig from "./axios-with-config";
-import { ICart, IResponseCart } from "../types/carts";
+import { ICart } from "../types/carts";
 import { IResponse } from "../types/api";
 
-export const addProductToCart = async (product_id: number, quantity: number) => {
+export const addProductToCart = async (product_id: number, qty: number = 1) => {
   try {
-    const response = await axiosWithConfig.post(`/cartitems`, { product_id, quantity });
-    return response.data as IResponse<IResponseCart>;
+    const response = await axiosWithConfig.post(`/cartitems`, { product_id, qty });
+    return response.data as IResponse<ICart>;
+  } catch (error: any) {
+    const { message } = error.response.data;
+    throw Error(message);
+  }
+};
+
+export const updateCartItemQuantity = async (product_id: number, qty: number) => {
+  try {
+    const response = await axiosWithConfig.post(`/cartitems`, { product_id, qty });
+    return response.data as IResponse<ICart>;
   } catch (error: any) {
     const { message } = error.response.data;
     throw Error(message);
