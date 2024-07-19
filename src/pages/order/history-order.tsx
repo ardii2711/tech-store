@@ -1,14 +1,26 @@
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
+import { IOrder } from "@/utils/types/orders";
+import { useEffect, useState } from "react";
+import { getOrder } from "@/utils/apis/orders";
+import { formatCurrency } from "@/utils/function";
 
 const HistoryOrder = () => {
-  const orderHistory = [
-    { id: 1, date: "2024-07-10", total: 1500, status: "Delivered" },
-    { id: 2, date: "2024-07-05", total: 2200, status: "Pending" },
-    { id: 3, date: "2024-06-30", total: 1800, status: "Delivered" },
-    { id: 4, date: "2024-06-25", total: 2500, status: "Delivered" },
-    { id: 5, date: "2024-06-20", total: 800, status: "Delivered" },
-  ];
+  const [orderHistory, setOrderHistory] = useState<IOrder[]>([]);
+
+  useEffect(() => {
+    fetchOrderHistory();
+  }, [])
+  
+  async function fetchOrderHistory() {
+    try {
+      const response = await getOrder()
+      setOrderHistory(response.data)
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Layout>
@@ -19,9 +31,9 @@ const HistoryOrder = () => {
             <div key={order.id} className="bg-muted rounded-lg p-4 flex items-center justify-between">
               <div>
                 <div className="text-base font-medium">
-                  Order #{order.id} - {order.date}
+                  Order #{order.id}
                 </div>
-                <div className="text-muted-foreground">Total: ${order.total}</div>
+                <div className="text-muted-foreground">{formatCurrency(order.totalPrice)}</div>
                 <div className="text-muted-foreground">Status: {order.status}</div>
               </div>
               <div className="flex gap-2">

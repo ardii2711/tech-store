@@ -34,5 +34,5 @@ export interface ProfileType {
   message?: string;
 }
 export interface deleteProfileType {
-  message: string; // Contoh: Pesan sukses atau informasi terkait penghapusan akun
+  message: string;
 }

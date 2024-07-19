@@ -6,11 +6,11 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout";
 
-import { deleteCartItem, getCartItems } from "@/utils/apis/carts";
+import { deleteCartItem, getCartItems, updateCartItemQuantity } from "@/utils/apis/carts";
 import { formatCurrency } from "@/utils/function";
 import { ICart } from "@/utils/types/carts";
 
-function Index() {
+function Cart() {
   const [cart, setCart] = useState<ICart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
@@ -37,16 +37,21 @@ function Index() {
     }
   }
 
-  const handleQuantityChange = (id: number, qty: number) => {
+  const handleQuantityChange = async (id: number, qty: number) => {
     if (qty < 1) return;
-    setCart((prevCart) =>
-      prevCart.map((item) => {
-        if (item.id === id) {
-          return { ...item, qty };
-        }
-        return item;
-      })
-    );
+    try {
+      await updateCartItemQuantity(id, qty);
+      setCart((prevCart) =>
+        prevCart.map((item) => {
+          if (item.id === id) {
+            return { ...item, qty, total_price: item.price * qty };
+          }
+          return item;
+        })
+      );
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
   };
 
   const handleRemoveItem = async (id: number) => {
@@ -129,4 +134,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Cart;
