@@ -16,14 +16,12 @@ function ManageProduct() {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    if (user) {
-      fetchProducts(user.id);
-    }
+    fetchProducts();
   }, [user]);
 
-  const fetchProducts = async (userId: number) => {
+  const fetchProducts = async () => {
     try {
-      const response = await getProductsByUser(userId);
+      const response = await getProductsByUser();
       setProducts(response.data);
     } catch (error) {
       toast.error("Failed to fetch products");
@@ -38,6 +36,10 @@ function ManageProduct() {
     } catch (error) {
       toast.error("Failed to delete product");
     }
+  };
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(value);
   };
 
   return (
@@ -70,9 +72,10 @@ function ManageProduct() {
                   <TableRow key={product.id}>
                     <TableCell className="font-medium">{product.name}</TableCell>
                     <TableCell>{product.description}</TableCell>
-                    <TableCell>${product.price}</TableCell>
+                    <TableCell>{formatCurrency(product.price)}</TableCell>
                     <TableCell>{product.stock}</TableCell>
                     <TableCell className="flex items-center gap-2">
+                      <Link to={`/edit-product/${product.id}`} className="text-blue-600 hover:underline"></Link>
                       <Dropdown productId={product.id} onDelete={() => handleDelete(product.id)} />
                     </TableCell>
                   </TableRow>
