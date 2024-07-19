@@ -19,12 +19,12 @@ const Dropdown: React.FC<DropdownProps> = ({ productId, onDelete }) => {
         <MoreVertical className="h-4 w-4" />
       </Button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-20">
-          <Link to={`/edit-product/${productId}`} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 transition-colors">
+        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-20">
+          <Link to={`/edit-product/${productId}`} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
             <FilePenIcon className="h-4 w-4" />
             Edit
           </Link>
-          <Button variant="destructive" size="sm" className="w-full text-left flex items-center gap-2 px-4 py-2" onClick={onDelete}>
+          <Button variant="destructive" size="sm" className="w-full text-left flex items-center gap-2 px-4 py-2 dark:text-white dark:bg-red-600 dark:hover:bg-red-700" onClick={onDelete}>
             <TrashIcon className="h-4 w-4" />
             Delete
           </Button>
