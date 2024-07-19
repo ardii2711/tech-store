@@ -81,10 +81,6 @@ function DetailProduct() {
               </div>
               <div className="text-sm md:text-base leading-relaxed">
                 <p>{data?.description}</p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod vero dicta, ut dolores aspernatur voluptatibus tempora a, ipsa asperiores quasi
-                  quaerat quae provident esse veniam optio dolorum corrupti ratione corporis!
-                </p>
               </div>
               <div className="flex flex-col gap-6">
                 <div className="text-4xl font-bold">{formatCurrency(data?.price ?? 0)}</div>
