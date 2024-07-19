@@ -7,3 +7,7 @@ export const checkOutSchema = z.object({
 });
 
 export type CheckOutSchema = z.infer<typeof checkOutSchema>;
+
+export interface ICheckOut {
+  payment_url: string;
+}
