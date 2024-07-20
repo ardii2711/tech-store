@@ -23,7 +23,7 @@ const HistoryOrder = () => {
       setOrderHistory(response);
     } catch (error) {
       toast.error((error as Error).message);
-    } 
+    }
   };
 
   const handleProceedPayment = (url: string) => {

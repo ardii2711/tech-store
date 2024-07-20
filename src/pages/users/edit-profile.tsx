@@ -1,20 +1,19 @@
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FormProvider } from "react-hook-form"; // Perlu FormProvider dan useFormContext
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { CustomFormField } from "../../components/custom-formfield";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
+import { CustomFormField } from "@/components/custom-formfield";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout";
 
-import { EditProfileSchema, editProfileSchema } from "../../utils/types/users";
-import { useToken } from "@/utils/contexts/token";
+import { editProfileSchema, EditProfileSchema } from "@/utils/types/users";
 import { updateProfile, deleteProfile } from "@/utils/apis/users";
+import { useToken } from "@/utils/contexts/token";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -46,12 +45,8 @@ function EditProfile() {
       const response = await updateProfile(data);
       toast.success(response.message);
       navigate("/profile");
-    } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Failed to update profile. Please try again later.");
-      }
+    } catch (error) {
+      toast.error((error as Error).message);
     }
   }
 
@@ -61,12 +56,8 @@ function EditProfile() {
       toast.success(response.message);
       changeToken();
       navigate("/login");
-    } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Failed to delete account. Please try again later.");
-      }
+    } catch (error) {
+      toast.error((error as Error).message);
     }
   }
 
@@ -86,7 +77,6 @@ function EditProfile() {
         </CardHeader>
         <CardContent className="grid gap-6">
           <FormProvider {...methods}>
-            {/* Gunakan FormProvider di sekitar form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <CustomFormField control={methods.control} name="email" label="Email">
                 {(field) => <Input {...field} data-testid="input-email" disabled={false} aria-disabled={false} />}

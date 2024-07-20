@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import Dropdown from "@/components/dropdown";
 import Layout from "@/components/layout";
-import Dropdown from "./dropdown";
 
 import { getProductsByUser, deleteProduct } from "@/utils/apis/products";
+import { formatCurrency } from "@/utils/function";
 import { useToken } from "@/utils/contexts/token";
 import { IProduct } from "@/utils/types/products";
 
@@ -27,7 +28,7 @@ function ManageProduct() {
     try {
       setLoading(true);
       const response = await getProductsByUser();
-      setProducts(response.data || []); // Ensure products is always an array
+      setProducts(response.data || []);
       setLoading(false);
     } catch (error) {
       setError("Failed to fetch products");
@@ -44,10 +45,6 @@ function ManageProduct() {
     } catch (error) {
       toast.error("Failed to delete product");
     }
-  };
-
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(value);
   };
 
   if (loading) {

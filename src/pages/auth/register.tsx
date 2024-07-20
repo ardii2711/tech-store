@@ -28,7 +28,6 @@ function Register() {
   async function onSubmit(data: RegisterSchema) {
     try {
       const response = await userRegister(data);
-      console.log(response.message);
       toast.success(response.message);
       navigate("/login");
     } catch (error) {

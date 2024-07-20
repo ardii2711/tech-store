@@ -1,6 +1,6 @@
 import axiosWithConfig from "./axios-with-config";
-import { ICart } from "../types/carts";
 import { IResponse } from "../types/api";
+import { ICart } from "../types/carts";
 
 export const addProductToCart = async (product_id: number, qty: number = 1) => {
   try {

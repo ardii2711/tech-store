@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
 import { Card, CardContent, CardHeader } from "./ui/card";
+
 import { IProduct } from "@/utils/types/products";
 import { formatCurrency } from "@/utils/function";
 
 interface Props {
-  data: IProduct
+  data: IProduct;
   navigate: string;
 }
 

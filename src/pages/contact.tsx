@@ -4,8 +4,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import ThankYou from "@/components/thank-you";
 import Layout from "@/components/layout";
+import ThankYou from "./thank-you";
 
 function Contact() {
   const [state, handleSubmit] = useForm("mvgpgwjk");
