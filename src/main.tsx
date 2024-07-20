@@ -2,9 +2,10 @@ import ReactDOM from "react-dom/client";
 import { Toaster } from "sonner";
 import React from "react";
 
+import App from "./routes";
+
 import { ThemeProvider } from "./utils/contexts/theme-provider";
 import { TokenProvider } from "./utils/contexts/token";
-import App from "./routes";
 
 import "./styles/index.css";
 

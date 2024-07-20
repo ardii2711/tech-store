@@ -70,7 +70,7 @@ function Cart() {
   };
 
   const handleProceedToCheckout = () => {
-    navigate("/checkout", { state: { cart } });
+    navigate("/checkout");
   };
 
   return (

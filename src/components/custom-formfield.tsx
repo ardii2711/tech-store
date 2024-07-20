@@ -1,8 +1,9 @@
-// CustomFormField.tsx
 import { Controller, FieldValues, FieldPath, Control } from "react-hook-form";
 import { ReactNode } from "react";
+
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import useController from "../utils/hooks/useControler";
+
+import useController from "@/utils/hooks/use-controler";
 
 interface Props<T extends FieldValues> {
   name: FieldPath<T>;

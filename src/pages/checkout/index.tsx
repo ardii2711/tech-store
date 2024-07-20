@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -17,22 +17,16 @@ import Layout from "@/components/layout";
 import { checkOutSchema, CheckOutSchema } from "@/utils/types/checkout";
 import { addCheckOut } from "@/utils/apis/checkout";
 import { formatCurrency } from "@/utils/function";
+import { getCartItems } from "@/utils/apis/carts";
 import { useToken } from "@/utils/contexts/token";
 import { ICart } from "@/utils/types/carts";
 
-interface LocationState {
-  state: {
-    cart: ICart[];
-  };
-}
-
 function Checkout() {
-  const location = useLocation() as LocationState;
+  const [cart, setCart] = useState<ICart[]>([]);
   const { user } = useToken();
   const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const cart = location.state?.cart || [];
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const form = useForm<CheckOutSchema>({
@@ -44,12 +38,29 @@ function Checkout() {
     },
   });
 
-
   useEffect(() => {
     form.setValue("fullname", user?.fullname ?? "");
     form.setValue("phone", user?.phone ?? "");
     form.setValue("shipping_address", user?.address ?? "");
-  }, [user]);
+  }, [user, form]);
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  async function fetchCart() {
+    try {
+      const response = await getCartItems();
+      const cartData: ICart[] = response.data || [];
+      cartData.forEach((item) => {
+        item.qty = item.qty || 1;
+        item.id = item.product_id;
+      });
+      setCart(cartData);
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  }
 
   async function handlePlaceOrder(data: CheckOutSchema) {
     try {

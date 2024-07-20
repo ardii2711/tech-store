@@ -19,7 +19,7 @@ function Profile() {
           <div className="grid gap-6">
             <div className="flex justify-center">
               <Avatar className="w-16 h-16">
-                <AvatarImage src={user.image_profile || "https://images.unsplash.com/photo-1599566150163-29194dcaad36"} className="rounded-full w-full h-full object-cover" />
+                <AvatarImage src={user.image_profile || "/placeholder-user.jpg"} className="rounded-full w-full h-full object-cover" />
                 <AvatarFallback>{user.fullname[0]}</AvatarFallback>
               </Avatar>
             </div>

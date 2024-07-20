@@ -1,8 +1,7 @@
+import { EditProfileSchema, ProfileType } from "../types/users";
+import { checkProperty, valueFormatData } from "../function";
 import axiosWithConfig from "./axios-with-config";
-import { ProfileType } from "../types/users";
 import { IResponse } from "../types/api";
-import { checkProperty, valueFormatData } from "../../utils/function";
-import { EditProfileSchema } from "../../utils/types/users";
 
 export const updateProfile = async (body: EditProfileSchema): Promise<ProfileType> => {
   try {

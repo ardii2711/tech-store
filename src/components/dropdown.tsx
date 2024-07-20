@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { FilePenIcon, TrashIcon, MoreVertical } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+import { Button } from "./ui/button";
 
 interface DropdownProps {
   productId: number;
@@ -24,7 +25,12 @@ const Dropdown: React.FC<DropdownProps> = ({ productId, onDelete }) => {
             <FilePenIcon className="h-4 w-4" />
             Edit
           </Link>
-          <Button variant="destructive" size="sm" className="w-full text-left flex items-center gap-2 px-4 py-2 dark:text-white dark:bg-red-600 dark:hover:bg-red-700" onClick={onDelete}>
+          <Button
+            variant="destructive"
+            size="sm"
+            className="w-full text-left flex items-center gap-2 px-4 py-2 dark:text-white dark:bg-red-600 dark:hover:bg-red-700"
+            onClick={onDelete}
+          >
             <TrashIcon className="h-4 w-4" />
             Delete
           </Button>
